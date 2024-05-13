@@ -1,0 +1,17 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  .dashboard-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px hsl(0, 0%, 70%);
+    background-color: white;
+  }
+}
