@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Nodemailer from "next-auth/providers/nodemailer";
 import { pool } from "@/src/lib/postgres";
 import PostgresAdapter from "@auth/pg-adapter";
+import { setName } from "@/src/lib/auth/setNameServerAction";
 import { clearStaleTokens } from "./clearStaleTokensServerAction";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -37,7 +38,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, session, trigger }) {
+      if (trigger === "update" && session?.name !== token.name) {
+        token.name = session.name;
+
+        try {
+          await setName(token.name);
+        } catch (error) {
+          console.error("Failed to set user name:", error);
+        }
+      }
+
       if (user) {
         await clearStaleTokens(); // Clear up any stale verification tokens from the database after a successful sign in
         return {

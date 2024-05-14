@@ -5,11 +5,13 @@ import { getAccountLinkStatus } from "@/src/lib/auth/getAccountLinkStatusServerA
 import { getUserName } from "@/src/lib/auth/getUserNameServerAction";
 import { handleGoogleSignIn } from "@/src/lib/auth/googleSignInServerAction";
 import { unlinkGoogleAccount } from "@/src/lib/auth/unlinkGoogleAccountServerAction";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 export const DashboardPage: React.FC = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [username, setUsername] = useState("");
+  const { update } = useSession();
 
   useEffect(() => {
     const userInfo = async () => {
@@ -43,7 +45,12 @@ export const DashboardPage: React.FC = () => {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-          <button className="update-field-button">Update Name</button>
+          <button
+            className="update-field-button"
+            onClick={() => update({ name: username })}
+          >
+            Update Name
+          </button>
         </div>
         <div>
           <button
