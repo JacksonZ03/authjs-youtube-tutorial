@@ -13,5 +13,24 @@
     border-radius: 1rem;
     box-shadow: 0 4px 8px hsl(0, 0%, 70%);
     background-color: white;
+
+    .link-account-button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: white;
+      background-color: hsl(208, 86%, 48%);
+      border: solid;
+      border-radius: 1rem;
+      border-color: hsl(208, 86%, 48%);
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: hsl(208, 86%, 58%);
+      }
+    }
   }
 }
