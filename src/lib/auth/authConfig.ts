@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Nodemailer from "next-auth/providers/nodemailer";
 import { pool } from "@/src/lib/postgres";
 import PostgresAdapter from "@auth/pg-adapter";
+import { clearStaleTokens } from "./clearStaleTokensServerAction";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
@@ -14,6 +15,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: "/auth/sign-in",
+    verifyRequest: "/auth/auth-success",
+    error: "/auth/auth-error",
   },
   providers: [
     Google({
@@ -36,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        await clearStaleTokens(); // Clear up any stale verification tokens from the database after a successful sign in
         return {
           ...token,
           id: user.id,

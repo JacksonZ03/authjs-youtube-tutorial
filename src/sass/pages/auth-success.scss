@@ -1,0 +1,31 @@
+.auth-success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 97.5%);
+
+  .auth-success-card {
+    width: 20rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px hsl(0, 0%, 70%);
+    background-color: white;
+    text-align: center;
+
+    .auth-success {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      color: hsl(124, 100%, 22%);
+      background-color: hsl(125, 100%, 87%);
+      border-radius: 1rem;
+      padding: 0rem 1rem;
+
+      .icon {
+        margin-right: 0.75rem;
+        font-size: large;
+      }
+    }
+  }
+}
