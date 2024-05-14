@@ -43,6 +43,7 @@ export const DashboardPage: React.FC = () => {
     <div className="dashboard-page">
       <h2>Dashboard</h2>
       <div className="dashboard-card">
+        <a href="/admin">Go to Admin Page</a>
         <div>
           <p>Role: {role}</p>
         </div>
