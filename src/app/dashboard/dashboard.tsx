@@ -35,6 +35,16 @@ export const DashboardPage: React.FC = () => {
       <h2>Dashboard</h2>
       <div className="dashboard-card">
         <div className="name">{username}</div>
+        <div className="field-input-container">
+          <input
+            className="field-input"
+            type="text"
+            placeholder={"Enter name"}
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <button className="update-field-button">Update Name</button>
+        </div>
         <div>
           <button
             className="link-account-button"

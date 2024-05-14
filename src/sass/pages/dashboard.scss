@@ -19,6 +19,40 @@
       font-weight: bold;
     }
 
+    .field-input-container {
+      width: 80%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      .field-input {
+        font-size: medium;
+        width: 100%;
+        padding: 1rem;
+        border: solid;
+        border-radius: 1rem;
+        border-color: hsl(0, 0%, 70%);
+        box-sizing: border-box; // This ensures that padding and border are included in the width
+      }
+    }
+
+    .update-field-button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: white;
+      background-color: hsl(27, 86%, 48%);
+      border: solid;
+      border-radius: 1rem;
+      border-color: hsl(27, 86%, 48%);
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: hsl(27, 86%, 58%);
+      }
+    }
+
     .link-account-button {
       width: 100%;
       padding: 1rem;
