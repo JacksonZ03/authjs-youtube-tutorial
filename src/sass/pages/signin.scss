@@ -18,6 +18,55 @@
       flex-direction: column;
       align-items: center;
 
+      .email-signin-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .form-input {
+          font-size: medium;
+          padding: 1rem;
+          border: solid;
+          border-radius: 1rem;
+          border-color: hsl(0, 0%, 70%);
+        }
+
+        .submit-button {
+          padding: 1rem;
+          margin-top: 1rem;
+          font-weight: bold;
+          color: white;
+          background-color: hsl(208, 86%, 48%);
+          border: solid;
+          border-radius: 1rem;
+          border-color: hsl(208, 86%, 48%);
+          cursor: pointer;
+          font-size: 1rem;
+
+          &:hover {
+            background-color: hsl(208, 86%, 58%);
+          }
+        }
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        width: 75%;
+        padding: 1.5rem;
+
+        .line {
+          flex-grow: 1;
+          height: 1px;
+          background-color: hsl(0, 0%, 70%);
+        }
+
+        .or {
+          padding: 0 1rem;
+          color: hsl(0, 0%, 60%);
+        }
+      }
+
       .social-logins {
         display: flex;
         flex-direction: column;
