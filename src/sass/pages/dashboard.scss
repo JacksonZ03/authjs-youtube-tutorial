@@ -14,6 +14,11 @@
     box-shadow: 0 4px 8px hsl(0, 0%, 70%);
     background-color: white;
 
+    .name {
+      font-size: large;
+      font-weight: bold;
+    }
+
     .link-account-button {
       width: 100%;
       padding: 1rem;

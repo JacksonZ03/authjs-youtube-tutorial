@@ -2,14 +2,22 @@
 
 import { SignOutButton } from "@/src/components/sign-out-button";
 import { getAccountLinkStatus } from "@/src/lib/auth/getAccountLinkStatusServerAction";
+import { getUserName } from "@/src/lib/auth/getUserNameServerAction";
 import { handleGoogleSignIn } from "@/src/lib/auth/googleSignInServerAction";
 import { unlinkGoogleAccount } from "@/src/lib/auth/unlinkGoogleAccountServerAction";
 import { useEffect, useState } from "react";
 
 export const DashboardPage: React.FC = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+    const userInfo = async () => {
+      const name = await getUserName();
+      if (name) {
+        setUsername(name);
+      }
+    };
     const accountLinkStatus = async () => {
       try {
         const accountLinkStatus = await getAccountLinkStatus();
@@ -18,6 +26,7 @@ export const DashboardPage: React.FC = () => {
         console.error("Failed to get account link status:", error);
       }
     };
+    userInfo();
     accountLinkStatus();
   }, []);
 
@@ -25,6 +34,7 @@ export const DashboardPage: React.FC = () => {
     <div className="dashboard-page">
       <h2>Dashboard</h2>
       <div className="dashboard-card">
+        <div className="name">{username}</div>
         <div>
           <button
             className="link-account-button"
