@@ -3,6 +3,7 @@
 import { SignOutButton } from "@/src/components/sign-out-button";
 import { getAccountLinkStatus } from "@/src/lib/auth/getAccountLinkStatusServerAction";
 import { getUserName } from "@/src/lib/auth/getUserNameServerAction";
+import { getUserRole } from "@/src/lib/auth/getUserRoleServerAction";
 import { handleGoogleSignIn } from "@/src/lib/auth/googleSignInServerAction";
 import { unlinkGoogleAccount } from "@/src/lib/auth/unlinkGoogleAccountServerAction";
 import { useSession } from "next-auth/react";
@@ -11,6 +12,7 @@ import { useEffect, useState } from "react";
 export const DashboardPage: React.FC = () => {
   const [isAccountLinked, setIsAccountLinked] = useState(false);
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
   const { update } = useSession();
 
   useEffect(() => {
@@ -18,6 +20,11 @@ export const DashboardPage: React.FC = () => {
       const name = await getUserName();
       if (name) {
         setUsername(name);
+      }
+
+      const role = await getUserRole();
+      if (role) {
+        setRole(role);
       }
     };
     const accountLinkStatus = async () => {
@@ -36,6 +43,9 @@ export const DashboardPage: React.FC = () => {
     <div className="dashboard-page">
       <h2>Dashboard</h2>
       <div className="dashboard-card">
+        <div>
+          <p>Role: {role}</p>
+        </div>
         <div className="name">{username}</div>
         <div className="field-input-container">
           <input
